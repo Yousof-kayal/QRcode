@@ -1,6 +1,8 @@
 import random
 import string
 import pyqrcode
+import png
+import pyzbar
 from PIL import Image
 
 
@@ -11,8 +13,6 @@ def createqr(QRamount, keylist):
     for j in range(0, QRamount):
         QR = pyqrcode.create(f"{keylist[j]}")
         QR.png(f'{keylist[j]}.png', scale=8)
-#      QR.eps(f"{keylist[j]}.eps", scale=2)
-#      print(QR.terminal(quiet_zone=1))
 
 
 """
