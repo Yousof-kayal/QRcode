@@ -1,5 +1,4 @@
 import random
-import png
 import string
 import pyqrcode
 
@@ -8,11 +7,12 @@ Prompting user to select number of QR codes to generate,
 the value entered reflects the number of loops.
 As well as the length of the QR code.
 """
-QRamount = input("How many QR codes would you like to generate?")
-QRamount = int(QRamount)
 
-QRlength = input("How long should each QR string be?")
-QRlength = int(QRlength)
+QRamount = int(input("How many QR codes would you like to generate?"))
+
+
+QRlength = int(input("How long should each QR string be?"))
+
 
 """Making a list with a specified amount of random integers"""
 keylist = []
