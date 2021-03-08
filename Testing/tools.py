@@ -4,7 +4,7 @@ import pyqrcode
 import png
 import pyzbar
 from PIL import Image
-
+from pyzbar.pyzbar import decode
 
 """
 Function to create qr codes
