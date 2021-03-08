@@ -15,9 +15,7 @@ def createqr(QRamount, keylist):
         QR.png(f'{keylist[j]}.png', scale=8)
 
 
-
 #Function to read a QR code and return a value
-
 
 
 def readqrcode(imageName):
