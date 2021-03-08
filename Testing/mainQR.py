@@ -1,5 +1,3 @@
-
-#this is a comment
 from tools import generateQR, readqrcode
 
 print("Welcome to QR Interface 0.1")

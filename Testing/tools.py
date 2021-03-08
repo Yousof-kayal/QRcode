@@ -6,18 +6,18 @@ import pyzbar
 from PIL import Image
 from pyzbar.pyzbar import decode
 
-"""
-Function to create qr codes
-"""
+
+#Function to create qr codes
+
 def createqr(QRamount, keylist):
     for j in range(0, QRamount):
         QR = pyqrcode.create(f"{keylist[j]}")
         QR.png(f'{keylist[j]}.png', scale=8)
 
 
-"""
-Function to read a QR code and return a value
-"""
+
+#Function to read a QR code and return a value
+
 
 
 def readqrcode(imageName):
