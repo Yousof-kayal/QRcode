@@ -34,6 +34,21 @@ def readqrcode(imageName):
 
 
 
+def checkqrcode(imageName):
+    connection = sqlite3.connect('inviteeslist.db')
+    cur = connection.cursor()
+    input = readqrcode(imageName)
+    cur.execute(f"SELECT name from invitees where code like '%{input}%'")
+    data = cur.fetchall()
+    if not data:
+        print("User not found")
+    else:
+        print(f"User {data} have been found")
+
+    connection.close()
+
+
+
 def generateQR(nameList):
     """
     Prompting user to select number of QR codes to generate,
