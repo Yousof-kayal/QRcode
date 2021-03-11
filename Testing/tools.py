@@ -23,9 +23,7 @@ def createqr(keylist, nameList):
 
 
 
-
 #Function to read a QR code and return a value
-
 
 
 def readqrcode(imageName):
