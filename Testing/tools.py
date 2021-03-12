@@ -16,7 +16,7 @@ def createqr(keylist, nameList):
     for j in range(length):
         QR = pyqrcode.create(f"{keylist[j]}")
         QR.png(f'{keylist[j]}.png', scale=8)
-        connection.execute(f"INSERT INTO INVITEES (CODE,NAME) VALUES ('{keylist[j]}','{nameList[j]}')")
+        connection.execute(f"INSERT OR REPLACE INTO INVITEES (CODE,NAME) VALUES ('{keylist[j]}','{nameList[j]}')")
 
     connection.commit()
     connection.close()
@@ -43,7 +43,7 @@ def checkqrcode(imageName):
     if not data:
         print("User not found")
     else:
-        print(f"User {data} have been found")
+        print(f"User {data} has been found")
 
     connection.close()
 
@@ -56,8 +56,7 @@ def generateQR(nameList):
     As well as the length of the QR code.
     """
 
-    # QRamount = int(input("How many QR codes would you like to generate?"))
-    # QRlength = int(input("How long should each QR string be?"))
+#    QRlength = int(input("How long should each QR string be?"))
     QRlength = 10
 
     """Making a list with a specified amount of random integers"""
