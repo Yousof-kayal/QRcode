@@ -6,6 +6,8 @@ import pyzbar
 from PIL import Image
 from pyzbar.pyzbar import decode
 import sqlite3
+import pandas
+
 
 
 #Function to create qr codes
@@ -13,6 +15,7 @@ import sqlite3
 def createqr(keylist, nameList):
     connection = sqlite3.connect('inviteeslist.db')
     length = len(nameList)
+    connection.execute("DELETE FROM invitees")
     for j in range(length):
         QR = pyqrcode.create(f"{keylist[j]}")
         QR.png(f'{keylist[j]}.png', scale=8)
@@ -27,7 +30,6 @@ def createqr(keylist, nameList):
 
 
 def readqrcode(imageName):
-    from pyzbar.pyzbar import decode
     data = decode(Image.open(imageName))
     for i in data:
         return ((i.data.decode("utf-8")))
@@ -71,3 +73,10 @@ def generateQR(nameList):
     It creates elements incrementally from the list (keylist)
     """
     createqr(keylist,nameList)
+
+def extractxl():
+  test = pandas.read_excel(r'C:\Users\yoyo8\Desktop\QRcode\Data\namesheet.xlsx')
+  namelist = test["Name"].tolist()
+  return namelist
+
+

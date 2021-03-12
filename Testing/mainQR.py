@@ -1,9 +1,8 @@
-from tools import generateQR, checkqrcode
-
+from tools import generateQR, checkqrcode, nameexcel
 
 
 #We will get this name list from excel or a text file
-nameList = ['Aamer','Yousof',"Mostafa","Adnan","Abook","OMMAK","Jeddak"]
+nameList = nameexcel()
 
 print("Welcome to QR Interface 0.1")
 userInput = int(input("If you would to create qr codes please press 1\nIf you would like to check if a QR exists please press 2\n"))
