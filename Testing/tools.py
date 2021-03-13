@@ -37,11 +37,16 @@ def readqrcode(imageName):
 
 
 def checkqrcode(imageName):
+    bad_char = ['(', ')', ","]
     connection = sqlite3.connect('inviteeslist.db')
     cur = connection.cursor()
     input = readqrcode(imageName)
     cur.execute(f"SELECT name from invitees where code like '%{input}%'")
-    data = cur.fetchall()
+    data = str(cur.fetchone())
+
+    for i in bad_char :
+        data = data.replace(i, '')
+
     if not data:
         print("User not found")
     else:
@@ -51,7 +56,7 @@ def checkqrcode(imageName):
 
 
 
-def generateQR(nameList):
+def generatenewQR(nameList):
     """
     Prompting user to select number of QR codes to generate,
     the value entered reflects the number of loops.
@@ -80,3 +85,4 @@ def extractxl():
   return namelist
 
 
+# def downloadqr():
