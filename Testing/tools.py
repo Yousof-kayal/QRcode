@@ -10,9 +10,11 @@ import pandas
 
 
 
-#Function to create qr codes
-
-def createqr(keylist, nameList):
+"""
+Here is the Create Database Entry function,
+It connects to the database, and adds the key and name pairs to the it.
+"""
+def createdataentry(keylist, nameList):
     connection = sqlite3.connect('inviteeslist.db')
     length = len(nameList)
     connection.execute("DELETE FROM invitees")
@@ -25,17 +27,21 @@ def createqr(keylist, nameList):
     connection.close()
 
 
-
-#Function to read a QR code and return a value
-
-
+"""
+Here is the Extract Excel function,
+It allows for adding names from an excel sheet found in the Data folder
+"""
 def readqrcode(imageName):
     data = decode(Image.open(imageName))
     for i in data:
         return ((i.data.decode("utf-8")))
 
 
-
+"""
+Here is the Check QR code function,
+It accesses the database (inviteeslist),
+and prints the scanned QR's corresponding name
+"""
 def checkqrcode(imageName):
     bad_char = ['(', ')', ","]
     connection = sqlite3.connect('inviteeslist.db')
@@ -55,14 +61,11 @@ def checkqrcode(imageName):
     connection.close()
 
 
-
+"""
+Here is the QR code generator function.
+It creates random strings and incrementally adds to list (keylist)
+"""
 def generatenewQR(nameList):
-    """
-    Prompting user to select number of QR codes to generate,
-    the value entered reflects the number of loops.
-    As well as the length of the QR code.
-    """
-
 #    QRlength = int(input("How long should each QR string be?"))
     QRlength = 10
 
@@ -73,12 +76,13 @@ def generatenewQR(nameList):
             random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(QRlength))
         keylist.append(QRrandom)
 
-    """
-    Here is the QR code generator function.
-    It creates elements incrementally from the list (keylist)
-    """
-    createqr(keylist,nameList)
+    createdataentry(keylist,nameList)
 
+
+"""
+Here is the Extract Excel function,
+It allows for adding names from an excel sheet found in the Data folder
+"""
 def extractxl():
   test = pandas.read_excel(r'C:\Users\yoyo8\Desktop\QRcode\Data\namesheet.xlsx')
   namelist = test["Name"].tolist()
