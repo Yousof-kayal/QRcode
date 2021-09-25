@@ -3,6 +3,7 @@ import string
 import pyqrcode
 import png
 import pyzbar
+import hashlib
 from PIL import Image
 from pyzbar.pyzbar import decode
 import sqlite3
@@ -11,8 +12,7 @@ import pandas
 
 
 """
-Here is the Create Database Entry function,
-It connects to the database, and adds the key and name pairs to the it.
+This connects to the database, and adds the key and name pairs to the it.
 """
 def createdataentry(keylist, nameList):
     connection = sqlite3.connect('inviteeslist.db')
@@ -28,8 +28,7 @@ def createdataentry(keylist, nameList):
 
 
 """
-Here is the Extract Excel function,
-It allows for adding names from an excel sheet found in the Data folder
+This allows for adding names from an excel sheet found in the Data folder
 """
 def readqrcode(imageName):
     data = decode(Image.open(imageName))
@@ -38,8 +37,7 @@ def readqrcode(imageName):
 
 
 """
-Here is the Check QR code function,
-It accesses the database (inviteeslist),
+This accesses the database (inviteeslist),
 and prints the scanned QR's corresponding name
 """
 def checkqrcode(imageName):
@@ -62,12 +60,11 @@ def checkqrcode(imageName):
 
 
 """
-Here is the QR code generator function.
-It creates random strings and incrementally adds to list (keylist)
+This creates random strings and incrementally adds to list (keylist)
 """
 def generatenewQR(nameList):
 #    QRlength = int(input("How long should each QR string be?"))
-    QRlength = 10
+    QRlength = 16
 
     """Making a list with a specified amount of random integers"""
     keylist = []
@@ -80,11 +77,10 @@ def generatenewQR(nameList):
 
 
 """
-Here is the Extract Excel function,
-It allows for adding names from an excel sheet found in the Data folder
+This allows for adding names from an excel sheet found in the Data folder
 """
 def extractxl():
-  test = pandas.read_excel(r'C:\Users\yoyo8\Desktop\QRcode\Data\namesheet.xlsx')
+  test = pandas.read_excel(r'C:\Users\yoyo8\OneDrive\Desktop\QRcodeProject\Data\namesheet.xlsx')
   namelist = test["Name"].tolist()
   return namelist
 
