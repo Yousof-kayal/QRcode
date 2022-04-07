@@ -1,7 +1,7 @@
 from tools import generatenewQR, checkqrcode, extractxl
 
 
-#We will get this name list from excel or a text file
+#Get this name list from excel or a text file
 nameList = extractxl()
 
 print("Welcome to QR Interface 0.1")
